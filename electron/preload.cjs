@@ -1,6 +1,6 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
-contextBridge.exposeInMainWorld('interviewMateDesktop', {
+contextBridge.exposeInMainWorld('perryParrotDesktop', {
   isDesktop: true,
   listSources: () => ipcRenderer.invoke('desktop:list-sources'),
   ollamaTags: (base) => ipcRenderer.invoke('ollama:tags', base),
