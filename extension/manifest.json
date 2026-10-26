@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "parrotAssist Page Scanner",
+  "name": "Perry Parrot Page Scanner",
   "version": "1.0.0",
-  "description": "Explicitly scan readable text on the active tab and open parrotAssist for mock-interview practice.",
+  "description": "Explicitly scan readable text on the active tab and open Perry Parrot for mock-interview practice.",
   "permissions": [
     "activeTab",
     "scripting",
@@ -12,7 +12,7 @@
     "service_worker": "background.js"
   },
   "action": {
-    "default_title": "Scan this page with parrotAssist"
+    "default_title": "Scan this page with Perry Parrot"
   },
   "commands": {
     "scan-current-tab": {
