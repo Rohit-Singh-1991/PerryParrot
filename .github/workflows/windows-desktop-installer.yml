@@ -1,0 +1,38 @@
+name: Windows desktop installer
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build-installer:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund --fetch-retries=2 --fetch-timeout=120000
+      - name: Build Windows NSIS installer
+        run: npm run desktop:build
+      - name: Verify installer output
+        shell: pwsh
+        run: |
+          $installer = Get-ChildItem -Path release -Filter *.exe -File
+          if (-not $installer) { throw "No Windows installer was produced in release/." }
+          $installer | Format-Table Name, Length
+      - name: Upload Windows installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: Perry-Parrot-Windows-Installer
+          path: release/*.exe
+          if-no-files-found: error
+          retention-days: 30
