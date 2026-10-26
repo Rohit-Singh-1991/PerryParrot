@@ -37,8 +37,8 @@ export default function App() {
     ], options: { temperature: 0.3, num_predict: verbosity === 'Concise' ? 500 : verbosity === 'Detailed' ? 1800 : 1000 } };
     let response: { ok: boolean; status: number; json: () => Promise<any> };
     try {
-      if (window.interviewMateDesktop) {
-        const local = await window.interviewMateDesktop.ollamaChat(ollamaBase, body);
+      if (window.perryParrotDesktop) {
+        const local = await window.perryParrotDesktop.ollamaChat(ollamaBase, body);
         response = { ok: local.ok, status: local.status, json: async () => local.data };
       } else {
         response = await fetch(ollamaBase + '/api/chat', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
@@ -50,7 +50,7 @@ export default function App() {
     if (!answerText) throw new Error('Local model returned an empty answer. Try again.');
     return { answer: answerText, provider: 'Ollama', model: data.model || 'qwen2.5:3b' };
   };
-  const ask = async (q = question, displayQuestion = q) => { if (!q.trim()) return; setBusy(true); setError(''); setAnswer(''); try { const d = await generateAnswer(q); setAnswer(d.answer); setQuestion(displayQuestion); setHistory(h => [{ q: displayQuestion, a: d.answer, time: new Date().toLocaleString() }, ...h]); if (window.interviewMateDesktop) void window.interviewMateDesktop.updateAnswer({ question: displayQuestion, answer: d.answer }); } catch (e) { setError((e as Error).message); } finally { setBusy(false); } };
+  const ask = async (q = question, displayQuestion = q) => { if (!q.trim()) return; setBusy(true); setError(''); setAnswer(''); try { const d = await generateAnswer(q); setAnswer(d.answer); setQuestion(displayQuestion); setHistory(h => [{ q: displayQuestion, a: d.answer, time: new Date().toLocaleString() }, ...h]); if (window.perryParrotDesktop) void window.perryParrotDesktop.updateAnswer({ question: displayQuestion, answer: d.answer }); } catch (e) { setError((e as Error).message); } finally { setBusy(false); } };
   useEffect(() => {
     // Chrome extension passes text in the URL fragment so it is not sent to the web server.
     const prefix = '#scan=';
@@ -76,8 +76,8 @@ export default function App() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const requestTags = async (base: 'http://localhost:11434' | 'http://127.0.0.1:11434') => {
-    if (window.interviewMateDesktop) {
-      const local = await window.interviewMateDesktop.ollamaTags(base);
+    if (window.perryParrotDesktop) {
+      const local = await window.perryParrotDesktop.ollamaTags(base);
       return { ok: local.ok, status: local.status, json: async () => local.data };
     }
     return fetch(base + '/api/tags', { cache: 'no-store' });
