@@ -1,6 +1,6 @@
 name: Build and browser smoke tests
 concurrency:
-  group: parrotassist-ci-${{ github.workflow }}-${{ github.ref }}
+  group: perry-parrot-ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 on:
   push:
