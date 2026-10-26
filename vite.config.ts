@@ -12,8 +12,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['pwa-icon.svg'],
       manifest: {
-        name: 'parrotAssist — Interview Copilot',
-        short_name: 'parrotAssist',
+        name: 'Perry Parrot — Interview Copilot',
+        short_name: 'Perry Parrot',
         description: 'Local-AI interview practice and live meeting copilot.',
         theme_color: '#0d0f14',
         background_color: '#0d0f14',
