@@ -1,5 +1,5 @@
 {
-  "name": "parrotassist",
+  "name": "perry-parrot",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -35,8 +35,8 @@
   },
   "main": "electron/main.cjs",
   "build": {
-    "appId": "com.parrotassist.desktop",
-    "productName": "parrotAssist",
+    "appId": "com.perryparrot.desktop",
+    "productName": "Perry Parrot",
     "directories": {
       "output": "release"
     },
