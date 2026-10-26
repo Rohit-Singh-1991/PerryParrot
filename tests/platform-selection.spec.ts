@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('meeting platform selection suggests the matching desktop source', async ({ page }) => {
   await page.addInitScript(() => {
-    (window as any).interviewMateDesktop = {
+    (window as any).perryParrotDesktop = {
       isDesktop: true,
       listSources: async () => [
         { id: 'screen:1', name: 'Entire screen', type: 'screen', thumbnail: '', appIcon: '' },
@@ -34,7 +34,7 @@ test('meeting platform selection suggests the matching desktop source', async ({
 
 test('platform change clears a stale source when no matching window is found', async ({ page }) => {
   await page.addInitScript(() => {
-    (window as any).interviewMateDesktop = {
+    (window as any).perryParrotDesktop = {
       isDesktop: true,
       listSources: async () => [
         { id: 'screen:1', name: 'Entire screen', type: 'screen', thumbnail: '', appIcon: '' },

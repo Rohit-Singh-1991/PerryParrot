@@ -228,9 +228,9 @@ test('combined live session reads the selected screen and answers a detected spo
 });
 
 
-test('shows parrotAssist branding and transparent live-capture guardrails', async ({ page }) => {
+test('shows Perry Parrot branding and transparent live-capture guardrails', async ({ page }) => {
   await page.goto('/');
-  await expect(page.locator('.brand')).toContainText('parrotAssist');
+  await expect(page.locator('.brand')).toContainText('Perry Parrot');
   await expect(page.locator('.brand')).not.toContainText('InterviewMate');
   await page.getByRole('button', { name: /start mock interview/i }).click();
   await expect(page.getByRole('heading', { name: /AI Answer Companion/i })).toBeVisible();
