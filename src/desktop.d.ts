@@ -1,7 +1,7 @@
 export {};
 declare global {
   interface Window {
-    interviewMateDesktop?: {
+    perryParrotDesktop?: {
       isDesktop: boolean;
       listSources: () => Promise<Array<{id:string;name:string;type:string;thumbnail:string;appIcon:string}>>;
       ollamaTags: (base:string) => Promise<{ok:boolean;status:number;data:any}>;
