@@ -61,7 +61,7 @@ Build the Windows installer:
 npm run desktop:build
 ```
 
-The installer is produced under `release/`. GitHub Actions also builds a Windows installer and uploads it as an artifact on each push to `main` (artifact retained for 14 days). The desktop audio path is platform-dependent; automated builds do not substitute for testing system audio on your own Windows device. Select a screen and verify that audio tracks are available before relying on live transcription. The answer window stays visible and is not a hidden/undetectable overlay.
+The installer is produced under `release/`. GitHub Actions also builds a Windows installer and uploads it as an artifact on each push to `main` (artifact retained for 30 days). The desktop audio path is platform-dependent; automated builds do not substitute for testing system audio on your own Windows device. Select a screen and verify that audio tracks are available before relying on live transcription. The answer window stays visible and is not a hidden/undetectable overlay.
 
 ## Free features
 
