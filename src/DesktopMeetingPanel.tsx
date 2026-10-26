@@ -8,7 +8,7 @@ type Asr = (audio: { array: Float32Array; sampling_rate: number }, options?: Rec
 
 
 export default function DesktopMeetingPanel({ onQuestion }: Props) {
-  const desktop = Boolean(window.interviewMateDesktop?.isDesktop);
+  const desktop = Boolean(window.perryParrotDesktop?.isDesktop);
   const [sources, setSources] = useState<DesktopSource[]>([]);
   const [platform, setPlatform] = useState<MeetingPlatform>('Microsoft Teams');
   const [sourceId, setSourceId] = useState('');
@@ -32,9 +32,9 @@ export default function DesktopMeetingPanel({ onQuestion }: Props) {
   onQuestionRef.current = onQuestion;
 
   const refreshSources = async () => {
-    if (!window.interviewMateDesktop) return;
+    if (!window.perryParrotDesktop) return;
     try {
-      const result = await window.interviewMateDesktop.listSources();
+      const result = await window.perryParrotDesktop.listSources();
       setSources(result);
       if (!sourceId && result.length) {
         const suggested = result.find(s => platformMatches(platform, s.name));
@@ -151,7 +151,7 @@ export default function DesktopMeetingPanel({ onQuestion }: Props) {
   };
 
   const startSession = async () => {
-    if (!window.interviewMateDesktop || !sourceId) return;
+    if (!window.perryParrotDesktop || !sourceId) return;
     setBusy(true);
     let pendingStream: MediaStream | null = null;
     let pendingWorker: any = null;
@@ -246,7 +246,7 @@ export default function DesktopMeetingPanel({ onQuestion }: Props) {
           {sources.map(source => <option key={source.id} value={source.id}>{source.type === 'screen' ? 'Screen' : 'Window'} — {source.name}</option>)}
         </select>
         <button className="secondary" disabled={active || busy} onClick={() => void refreshSources()}><RefreshCw size={15}/>Refresh</button>
-        {!active ? <button className="primary" disabled={busy || !sourceId} onClick={() => void startSession()}>{busy ? <LoaderCircle className="spin" size={15}/> : <AudioLines size={15}/>}Start capture</button> : <button className="secondary" onClick={stopSession}><Square size={15}/>Stop capture</button>}<button className="secondary" disabled={!desktop} onClick={() => void window.interviewMateDesktop?.showAnswerWindow()}><Sparkles size={15}/>Open answer window</button>
+        {!active ? <button className="primary" disabled={busy || !sourceId} onClick={() => void startSession()}>{busy ? <LoaderCircle className="spin" size={15}/> : <AudioLines size={15}/>}Start capture</button> : <button className="secondary" onClick={stopSession}><Square size={15}/>Stop capture</button>}<button className="secondary" disabled={!desktop} onClick={() => void window.perryParrotDesktop?.showAnswerWindow()}><Sparkles size={15}/>Open answer window</button>
       </div>
       <div className="notice spacer"><ShieldCheck size={17}/><div><b>Visible, permission-based capture</b><p>Selected context: {platform}. Capture is shown in the desktop app and stops when you press Stop or close the selected source. No hidden recording or participant-concealment mode is provided. The English Whisper model downloads on first use and then runs locally.</p></div></div>
       <div className="two-col spacer">
