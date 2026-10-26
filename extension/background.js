@@ -1,4 +1,4 @@
-const APP_URL = "https://parrotassist-newdivide4-8630.vercel.app/";
+const APP_URL = "https://perry-parrot-newdivide4-8630.vercel.app/";
 
 async function scanActiveTab(tab) {
   if (!tab || !tab.id || !tab.url || /^(chrome|edge|about|chrome-extension):\/\//i.test(tab.url)) {
@@ -24,7 +24,7 @@ async function scanActiveTab(tab) {
     // Fragment is client-side only; the app removes it after reading it.
     await chrome.tabs.create({ url: APP_URL + "#scan=" + encodeURIComponent(payload) });
   } catch (error) {
-    console.warn("parrotAssist scan failed. The page may be protected.", error);
+    console.warn("Perry Parrot scan failed. The page may be protected.", error);
     await chrome.tabs.create({ url: APP_URL });
   }
 }
