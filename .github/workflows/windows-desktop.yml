@@ -23,6 +23,8 @@ jobs:
         run: npm install --no-audit --no-fund --fetch-retries=2 --fetch-timeout=60000
       - name: Build Windows installer
         run: npm run desktop:build
+      - name: Smoke-test Electron desktop bridge and local-only Ollama guard
+        run: npm run desktop:smoke
       - name: Upload installer
         uses: actions/upload-artifact@v4
         with:
